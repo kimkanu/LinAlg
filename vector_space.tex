@@ -1,0 +1,476 @@
+\chapter{Vector Space}
+
+\section{Matrix}
+\begin{remind}
+A \textbf{field} is a \textit{good} algebraic structure, which has the addition and the multiplication. Formally, a field $(F,~+,~\cdot)$, or simply $F$, is a pair of a set and two operations which is from $F\times F$ to $F$ satisfying the following:
+\begin{itemize}
+\item $(F,~ +)$ is an \textbf{abelian group}, that is, $+$ is commutative, associative, and there is an additional identity 0 and the inverse element $-a$ of $a$ for all $a \in F.$
+\item $(F^{\times },~\cdot)$ is also an abelian group, that is, $\cdot$ is commutative, associative, and there is an multiplicational identity 1 and the inverse element $a^{-1}$ of $a$ for all $a \in F^{\times},$ where $F^{\times} = F - \{0\}.$
+\item + and $\cdot$ are \textit{compatible}, which means $\cdot$ is distributing over $+.$
+\end{itemize}
+We simply write $a-b := a+(-b)$ and $a/b=ab^{-1}.$
+
+A \textbf{matrix} over a field $F$ is a rectangular arrangement of \textit{scalars}, elements of the field $F$. The space of $m$ by $n$ matrices is denoted as $\mathfrak M_{m,n}(F).$
+\end{remind}
+\begin{ex}\leavevmode
+\begin{itemize}
+\item $\mathbb Q$, $\mathbb R$, $\mathbb C$ are well-known(?) fields.
+\item $\mathfrak M_{m,n}(F) \approx F^{mn},$ without the product.
+\item Matrices do not form a field.
+\end{itemize}
+\end{ex}
+
+\subsection{Transpose and Trace}
+\begin{defn}
+For every $m$ by $n$ matrix $A \in \mathfrak M _{m,n}(F),$ the \textbf{transpose} of $A$ is defined as follows: $$ A^{\mathsf T} = (a_{ji})_{n,m}.$$ For every $n$ by $n$ \textit{square} matrix $A \in \mathfrak M_{n,n}(F),$ the \textbf{trace} of $A$ is defined as follows: $$\operatorname{tr}A = \sum_{i=1}^n a_{ii}.$$
+\end{defn}
+
+\begin{prop}[Linearity of transpose and trace]
+For every pair of $m$ by $n$ matrices $A$ and $B \in \mathfrak M_{m,n}(F)$ and every pair of scalars $a,~b \in F$, $$(aA + bB)^{\mathsf T} = a A^{\mathsf T} + bB^{\mathsf T}.$$ For every pair of $n$ by $n$ square matrices $A$ and $B \in \mathfrak M_{n,n}(F)$ and every pair of scalars $a,~b \in F$, $$\operatorname{tr}(aA + bB) = a \operatorname{tr}A + b \operatorname{tr}B.$$
+\end{prop}
+\begin{proof}
+ㅎㅎ.
+\end{proof}
+
+\begin{prop}[Behaviour of transpose and trace]
+$$(AB)^\mathsf T = B^\mathsf T A^\mathsf T, \qquad \operatorname{tr}A = \operatorname{tr} A^\mathsf T, \qquad \operatorname{tr}(AB) = \operatorname{tr}(BA).$$
+\end{prop}
+\begin{proof}
+Try it!
+\end{proof}
+
+
+\subsection{Inverse Matrix}
+\begin{defn}
+For a \textit{square} matrix $A\in\mathfrak M_{n,n}(F),$ if there is another square matrix $B\in\mathfrak M_{n,n}(F)$ such that $$AB = I = BA,$$ then we call $B=A^{-1}$ the(?) \textbf{inverse matrix} of $A$.
+\end{defn}
+
+\begin{prop}[Uniqueness of inverse matrix] The inverse matrix of a matrix $A$ is unique (if exists). This justifies the occurrence of \textbf{`the'} above.
+\end{prop}
+\begin{proof}
+Let those be $A^{-1}$ and ${\tilde A }^{-1},$ then $${\tilde A }^{-1} = (A^{-1}A) {\tilde A }^{-1} = A^{-1}(A {\tilde A }^{-1}) = A^{-1}.$$
+\end{proof}
+
+\begin{quest} If $AB = I$ for two square matrices $A$ and $B$, what can we say about the invertibility of them? We will solve this problem using a `function,' which is from and to some vector spaces, defined below.
+\end{quest}
+
+\newpage
+
+\section{Vector Space}
+\begin{defn}
+A \textbf{vector space} $V$ over $F$, or simply an \textbf{\textit{F}-vector space} $V$, is a \textit{good} algebraic structure, which has the addition $+:~V\times V \to V$ and the $F$-scalar multiplication $\mathrm{SM}_F:~F\times V \to V$. Formally, a field $(V,~F,~+,~\mathrm{SM}_F)$, or simply $V$, is a pair of a set, a field and two operations satisfying the following:
+\begin{itemize}
+\item $(V,~ +)$ is an abelian group.
+\item $\mathrm{SM}_F$ and $\cdot_F$ are compatible: $(ab)v = a(bv)$ for every $a, ~b \in F$ and $v\in V,$ and $1v = v$ for all $v\in V.$
+\item $+$s and $\mathrm{SM}_F$ are compatible: $(a+b)v = av + bv,$ $a(v+w) = av + aw$ for every $a,~b\in F$ and $v,~w \in V.$
+\end{itemize}
+We simply write $v-w := v+(-w).$
+\end{defn}
+\begin{ex} The following structures are examples of vector space.
+\begin{itemize}
+\item \textbf{\{0\}} is a vector space over \textit{arbitrary field}, and is called the \textbf{trivial space.}
+\item $\mathbb R^n$ and $\mathbb C^n$ are vector spaces. In fact, for any field $F$, $F^n$ is an $F$-vector space, trivially.
+\item Hence, a matrix space $\mathfrak M_{m,n}$ of $m$ by $n$ matrices over $F$ is a vector space since is \textit{the same with} $F^{mn}$, and the polynomial space of $n$-th degree $\mathbf{P}_n [t] = \{\sum_{i=0}^n a_i t^i: ~ a_i \in F\}$ is also a vector space, \textit{the same with} $F^{n+1}.$
+\item (Field extension) If there are two fields which one is a subfield of another, namely $E \ge F$, then $E$ is a $F$-vector space, with its addition and multiplication (as a scalar multiplication.)
+\item (\textbf{dual space!}) A \textbf{linear functional} $f$ on $V$ is a \textit{linear} map from $V$ to $F$, that is, $$f(av+b) = af(v)+b$$ for every $a,~b\in F$ and $v\in V.$ The \textbf{dual space} of $V$ is the space of linear functionals on $V$, and it forms a $F$-vector space, with the following operations: $$(f+g)(v) = f(v) + g(v),\qquad (af)(v) = af(v).$$ The dual space is one of the most interesting things not only in linear algebra, but in abstract algebra, or even in \textit{any} branches which use the term \textit{dual} (e.g., in projective geometry).
+\end{itemize}
+\end{ex}
+
+
+\begin{prop}
+\leavevmode
+
+\begin{itemize}
+
+\item $0v = 0$ and $(-1)v = -v$.
+\begin{proof} $0v=(0+0)v=0v+0v$ implies $0v=0$ and $v+(-v)=0=0v=(1+(-1))v=1v+(-1)v=v+(-1)v$ implies $-v=(-1)v.$
+\end{proof}
+\item Every \textbf{linear combination} $\sum_i a_i v_i$ of vectors $v_i \in V$ is in $V.$
+\begin{proof} Easy induction on the number of summands(terms).
+\end{proof}
+\end{itemize}
+\end{prop}
+
+\begin{defn}
+A subset $W\subseteq V$ is called a \textbf{subspace} of $V$ if it forms a vector space itself with the \textit{inherited} operations from $V$. We denote it $W\le V.$
+\end{defn}
+\begin{prop}\label[prop]{p:subspace}
+$$W\le V~~~\Longleftrightarrow~~~ \forall c\in F,~ \forall v,~w\in W,~~~ cv+w \in W.$$
+\end{prop}
+\begin{proof}
+($\Leftarrow$) The other axioms of vector space is satisfied by the fact that the operations are inherited by $V$, and hence it suffices to show that the operations are closed. First, let $c=-1$ and $v=w.$ Then we have $(-1)w + w = 0 \in W$ by the proposition above. Then, the addition is closed if we let $c=1$; and so is the scalar multiplication if we let $w=0$, which is in $W$, as we proved. Hence $W$ forms a vector space.
+
+($\Rightarrow$) $cv+w$ is a linear combination. ㅋㅋ.
+\end{proof}
+\begin{ex}
+\leavevmode
+\begin{itemize}
+\item Removing a coordinate(\textbf{projection}): $$F^2 = \left\{(a,b):~a,b\in F\right\} \le \left\{(a,b,c):~a,b,c\in F\right\} = F^3.$$
+\item \textbf{Symmetric}, \textbf{alternating} matrices over $F$: $$\mathrm{Sym}_n(F) = \{A \in \mathfrak M_{n,n}(F):~A=A^{\mathsf T}\} \le M_{n,n}(F),$$
+$$\mathrm{Alt}_n(F) = \{A \in \mathfrak M_{n,n}(F):~A=-A^{\mathsf T}\} \le M_{n,n}(F).$$
+\item \textbf{Hermitian} matrices: $$\mathrm{Her}_n = \{A \in \mathfrak M_{n,n}(\mathbb C):~A=\overline{A^{\mathsf T}}\} \le M_{n,n}(\mathbb C).$$
+\item The solution space of a system of homogeneous linear (differential) equations.
+\end{itemize}
+\end{ex}
+
+
+\subsection{Spanned subspace}
+
+\begin{defn} For a subset $S$ of a vector space $V$, the \textbf{subspace spanned by \textit{S}} is the following set: $$\left< S \right> = \left\{ \sum_{\textrm{finite}} a_i v_i: ~~ a_i\in F,~v_i \in S \right\},$$ where $\sum_{\textrm{finite}} a_i v_i$ means $a_i \ne 0$ for \textit{only} some finitely many indices $i$, and $a_i = 0$ for others; i.e., we only add finitely many vectors.\footnote[2]{We take finitely many vectors since it is not sufficient to define `convergence' of an infinite series with just axioms of vector space.}
+
+And we call a element of $\left< S \right>$ a \textbf{linear combination} of $S$.
+\end{defn}
+
+\begin{ex}
+Let $\mathbb R^{\infty}$ be the space of all sequences which are \textbf{eventually zero}, that is, there are only \textit{finitely many} nonzero terms. Then,$$ \mathcal E^{\infty} = \left\{\mathbf{e}_i =\left(0,~\cdots,~0,~\underset {i-\textrm{th}} 1,~0,~\cdots\right): ~~~ i\in \mathbb {N} \right\}$$ spans $\mathbb R^\infty.$ Hence, for example, a sequence $$\left(1,~1,~1,~\cdots\right)$$is not a linear combination of $\mathcal E^{\infty}.$
+\end{ex}
+\begin{prop}
+For every subset $S \in V,$ $\left <S\right>$ is a subspace of $V$.
+\end{prop}
+\begin{proof}
+Use \cref{p:subspace}.
+\end{proof}
+
+\begin{prop}
+For every subset $S \in V,$ $\left <S\right>$ is \textit{the smallest} subspace of $V$ which contains $S$, namely, $$\left<S\right> = \bigcap_{\substack{S \subseteq W \\ W:~\text{vector space}}} W.$$
+\end{prop}
+\begin{proof}
+($\subseteq$) Since $W$ is a vector space containing $S$, it must contain other linear combinations of $S$ also. Therefore $\left< S \right> \subseteq W$ for every $W$ satisfying the condition whence$$\left<S\right> \subseteq \bigcap_{\substack{S \subseteq W \\ W:~\text{vector space}}} W.$$
+
+($\supseteq$) $\left<S\right>$ is a vector space containing $S$.
+\end{proof}
+
+\subsection{Basis}
+
+\begin{defn} A subset $S = \{v_i:~i\in I\}$ is \textbf{linearly independent} if every vector of $S$ cannot be represented by a linear combination other vectors; i.e., $$\forall i\in I,~\forall a_j\in F,\quad v_i \ne \sum_{\substack{j\ne i \\ \textrm{finite}}} a_j v_j.$$ Equivalently, if every linear combination whose coefficients are not all zero is non-zero, the subset is linearly independent. If not, $S$ is \textbf{linearly dependent}.
+\end{defn}
+
+\begin{defn} A \textbf{(Hamel) basis} $\mathfrak B$ of $V$ is a subset of $V$ which satisfies the followings: $$\left<\mathfrak B \right>=V$$ and $$\mathfrak B\textrm{ is linearly independent.}$$
+We usually fix the order of elements of $\mathfrak B$, which is called an \textbf{ordered basis}. Hereafter, \textit{every basis is an ordered basis.} For example, a basis $\{(1,0),~(0,1)\}$ and $\{(0,1),~(1,0)\}$ are different bases.
+\end{defn}
+
+\begin{ex}\leavevmode
+\begin{itemize}
+\item (\textbf{standard basis}) $$\mathcal E = \left\{ \mathbf e_i = \left(0,~\cdots,~0,~\underset {i-\textrm{th}} 1,~0,~\cdots,~0\right): ~~~ 1\le i \le n \right\}$$ is a basis for $F^n$, for arbitrary field $F$.
+\item $\{ (1,0), (1,1)\}$ is a basis for $\mathbb R^2$ (over the field $\mathbb R$).
+\end{itemize}
+\end{ex}
+
+\subsection{Dimension}
+\begin{defn} `The' \textbf{dimension} $\operatorname{dim} V$ of given vector space $V$ is the \textbf{cardinality}(the number of elements of given set for finite set) of a basis.
+\end{defn}
+
+\begin{defn} A \textbf{finite dimensional vector space} is a vector space whose bases are all finite.\footnote[2]{It is the best way for defining finite dimensional vector space since the dimension is \textit{not} well-defined yet.}
+\end{defn}
+
+We consider \textit{finite dimensional vector spaces only} unless there is an additory description.
+
+\begin{lemma}\label[lemma]{l:span} Let $\mathfrak B = \{v_i:~ 1\le i \le n\}$ be a basis, and $\mathfrak C = \{w_j:~ 1\le j \le m\}$ span $V$. Then $m\ge n$.
+\end{lemma}
+\begin{proof}
+If there is a vector $v$ of $\mathfrak B$ which is not in $\mathfrak C$, without loss of generality, rename it $v_1 \ne w_i$. Then $\mathfrak C \cup \{v_1\}$ is linearly dependent: since $\mathfrak C$ spans $V$, there is a linear combination of $\mathfrak B$ represents $-v_1$ whence $\mathfrak C \cup \{v_1\}$ is linearly dependent. Hence there is at least one vector $w_t$ which is represented by a linear combination of others. Then let $\mathfrak C_1 = \mathfrak C \cup \{v_1\} - \{w_t\}.$
+
+Repeat this process. It is possible up to $n$-th stage since $\mathfrak B$ is linearly independent: if there is a linear dependence, it must contain a $w$-vector. Hence we obtain $$\mathfrak C_n = \{v_1,~\cdots,~v_n,~w_{r_1},~\cdots,~w_{r_{m-n}} \}$$ and it is linearly dependent.
+\end{proof}
+
+\begin{theorem}[uniqueness of dimension] Let $\mathfrak B$ and $\mathfrak C$ be two bases of finite dimensional vector space $V$. Then $|\mathfrak B| = |\mathfrak C|.$
+\end{theorem}
+\begin{proof}
+$|\mathfrak B| \ge  |\mathfrak C|$ and
+$|\mathfrak C| \ge  |\mathfrak B|$ by \cref{l:span}.
+\end{proof}
+
+Well... How about the existence? The existence of the dimension needs the existence of the basis of $V$.
+
+\begin{theorem}[existence of basis] Every vector space has a basis, if \textbf{AC}(Axiom of Choice) assumed. In addition, it is equivalent to \textbf{AC}.
+\end{theorem}
+\begin{proof}
+$\exists \mathfrak B \Longleftrightarrow \mathbf{ZL} \Longleftrightarrow \mathbf{AC}.$ See a set theory textbook.
+\end{proof}
+
+\subsection{Basis extension}
+We can \textit{extend} a basis of smaller space to a larger space.
+
+\begin{theorem}[basis extension] Let $W\le V$ be two vector spaces and $\mathfrak C$ be a basis for $W$. Then there is a basis $\mathfrak B$ of $V$ which contains $\mathfrak C.$
+\end{theorem}
+\begin{proof}
+Induction on \textbf{\textit{n$-$m}}, where $n=\operatorname{dim}V$ and $m=\operatorname{dim}W$. If $n-m=0$, just let $\mathfrak B = \mathfrak C.$ (Why?) Now, assuming there is a vector in $V - W$, take a vector $v$ in $V-W$. Then $v$ is linearly independent with $\mathfrak B$ (that is, $\tilde {\mathfrak B} = \mathfrak B \cup \{v\}$ is linearly independent) and hence $\tilde W = \left<\tilde {\mathfrak B }\right>$ is a vector space which $\tilde W \le V.$ Since $n-m$ decreases, the induction proceeds.
+\end{proof}
+
+
+\subsection{Sum and direct sum}
+\begin{defn}
+For a set $\{S_i\}_{i\in I}$ of sets with a common addition, we define the \textbf{sum} of $\{S_i\}$ as follows: \begin{align*}\sum_{i \in I}S_i &= \left\{ \sum_{\textrm{finite}} s_i:~~~ s_i \in S_i\right\} \\&= \left\{ \sum_{i \in I} s_i:~~~ s_i \in S_i\textrm{ and all }s_i = 0\textrm{ but for finitely many }i\right\}.\end{align*}
+\end{defn}
+\begin{defn}
+For a set $\{W_i\}_{i\in I}$ of \textit{subspaces} of $V$ which is mutually disjoint: $$W_i \cap W_j = \{ 0 \},\qquad\textrm{for }i\ne j,$$ we define the \textbf{direct sum} of $\{W_i\}$ just the sum of them: $$\bigoplus_{i\in I}  W_i = \sum_{i \in I} W_i.$$
+
+If the set is not mutually disjoint, even if it is mutually disjoint itself, we \textit{make it be} mutually disjoint: isolate the vectors with giving different coordinates for each vector space. For example, if $V\oplus W \ne \{0\}$, $$V\oplus W :\approx \{(v,~w):~~~v\in V,~ w\in W\}.$$
+Trivially the direct sum of some vector spaces is a vector space.
+\end{defn}
+
+\begin{ex}
+\leavevmode
+\begin{itemize}
+\item $\mathbb R \oplus \mathbb R \approx \mathbb R^2,$
+\item $\mathbb R \oplus \mathbb R \oplus \cdots \approx \mathbb R^\infty.$
+\end{itemize}
+\end{ex}
+
+\begin{add}
+\leavevmode
+\begin{itemize}
+\item For finite spaces, the direct sum of them is \textit{the same}(isomorphic) with the cartesian product.
+\item The direct sum can be represented by a commutative diagram: \begin{center}
+\leavevmode
+\xy
+\xymatrix {
+X \\
+& V\oplus W \ar@{.>}[ul]^{f} & V
+\ar[l]^{i_1}
+\ar@/_/[ull]_{f_1} \\
+& W
+\ar[u]_{i_2}
+\ar@/^/[uul]^{f_2} &
+}
+\endxy
+\end{center} where the cartesian product is represented by:
+\begin{center}
+\leavevmode
+\xy
+\xymatrix{
+X \ar@/_/[ddr]_{f_2} \ar@{.>}[dr]_{f} \ar@/^/[drr]^{f_1} \\
+& X \times Y \ar[d]^{p_2} \ar[r]_{p_1}
+& X \\
+& Y  & }
+\endxy
+\end{center}
+
+
+\end{itemize}
+\end{add}
+
+\newpage
+
+\section{Linear Transformation}
+\begin{defn}
+Let $V$ and $W$ be two $F$-vector spaces, then a map $f:~V\to W$ is \textbf{linear} if $$f(cv+dw) = cf(v)+df(w)$$ for every $c,~d \in F$ and $v,~w\in V.$
+
+In another viewpoint, a linear map is a \textbf{vector space homomorphism} since it \textit{preserves} the operations of vector spaces.
+\end{defn}
+\begin{ex}
+\leavevmode
+\begin{itemize}
+\item A map $f:~F\to F, ~~~ x \mapsto ax$ is a linear map from and to $F$. It is why maps of this kind are called \textit{linear}.
+\item Producting a matrix is a linear map. For a matrix $A\in\mathfrak M_{m,n}(F),$ $$L_A:~F^m \to F^n,~~~ X\mapsto AX$$ is a linear map from $F^m$ to $F^n.$ We will show that every linear map (from and to finite dimensional vector spaces) can be represented in this way, i.e., \textit{matrices and linear transformations are the same things.}
+\item Another familiar linear maps are differentiation and integration. Let $\mathcal C^{n}$ be the space of function from and to $\mathbb R$ which is $n$-th differentiable and has continuous $n$-th derivative. Then for $n\in\mathbb N$, the \textbf{differentiation operator} $$D:~\mathcal C^{n}\to \mathcal C^{n-1}, \qquad f \mapsto f'$$ is a linear transformation since $(cf+dg)'=cf'+dg'.$ Similarly, the \textbf{integration operator} $$J:~\mathcal C^{n\ge 0} \to \mathcal C^{n+1},\qquad f \mapsto \int_0^x f ~\mathrm dx$$ is linear. (Here, $F$ is not a field but the antiderivative of $f.$) Similarly, partial differentiation operators are linear.
+\item Transpose and trace are linear.
+\end{itemize}
+\end{ex}
+
+\begin{theorem}
+If $f$ is linear, values of $f$ at the basis elements determine $f$. Equivalently, there is an one-to-one correspondence between $f$ and $f(\mathbf e_i)$'s.
+\end{theorem}
+\begin{proof}
+\leavevmode
+\begin{center}
+\leavevmode
+\xy
+\xymatrix @C=4pc {
+  f(v) \ar@/^/^{v=\mathbf e_i} [r]
+& f(\mathbf e_i) \ar@/^/^{v=\sum_i a_i \mathbf e_i} [l]
+}
+\endxy
+\end{center}
+\end{proof}
+
+\begin{prop}
+Let denote the space of all linear transformations from $V$ to $W$ as $\mathfrak L(V,W)$. Then $\mathfrak L(V,W)$ is a vector space dimension of $mn$.
+\end{prop}
+
+
+\begin{defn}
+For an $F$-vector space $V$, a linear map $f:~V\to F$ is called a \textbf{linear functional}. And it forms a vector space, which is called the \textbf{dual space} of $V$. $$V^{*} = \left\{ f:~V\to F~|~ f~\textrm{linear}\right\}.$$ Since $V^*$ is an $F$-vector space, we can define the \textbf{double dual} $V^{**}$ of $V$ as follows: $$V^{**} = (V^*)^* = \left\{ \alpha:~V^*\to F~|~ \alpha~\textrm{linear}\right\}.$$
+An example of elements of $V^{**}$ is \textbf{evaluation}: $$\alpha_a(f) = f(a),\qquad f\in V^*.$$
+\end{defn}
+
+\begin{defn}
+For a linear map $f:~V\to W$, the \textbf{kernel} or the \textbf{null space} of $f$ is $$\ker  f = f^{-1}(0) = \left\{v\in V: ~ f(v) = 0 \right\},$$ where $0$ is the zero vector of $W.$ The \textbf{image} of $f$ is just $\operatorname{im}f = f(V).$
+\end{defn}
+\begin{prop}
+The kernel and the image of a linear map form subspaces of $V$, respectively.
+\end{prop}
+\begin{theorem}[dimension theorem] \label[thm]{t:dimthm} For a linear map $f:~V \to W,$ $$\operatorname{dim} \ker  f + \operatorname{dim} \operatorname{im} f = \operatorname{dim}V.$$
+\end{theorem}
+\begin{proof}
+Proof by basis extension. Let $\mathfrak B=\{v_i:~1\le i \le n\}$ be a basis of $\ker f.$ Then there is a basis $\mathfrak C = \mathfrak B \cup \{w_j:~1\le j \le m\}$ of $V$ which contains $\mathfrak B$, and we will show that $f(\mathfrak C - \mathfrak B)$ is a basis of $\operatorname{im}f$.
+
+For an arbitrary vector $v = \sum_{i} a_i v_i + \sum_j b_j w_j$ of $V$, $$f(v) = f\left(\sum_i a_i v_i + \sum_j b_j w_j \right) = \sum_j b_j f(w_j)$$ since $v$'s are in the kernel. Since $v$'s and $w$'s are linearly independent, so are $f(w)$'s. Hence $f(w)$'s form a basis of $\operatorname{im}f$.
+\end{proof}
+We call $\operatorname{dim}\ker f$ the \textbf{nullity} of $f$ and denote it as $\operatorname{null}f$.
+
+\begin{defn}
+\leavevmode
+\begin{itemize}
+\item A \textbf{monomorphism} is an injective homomorphism.
+\item An \textbf{epimorphism} is an surjective homomorphism.
+\item An \textbf{isomorphism} is an bijective homomorphism.
+\item An \textbf{automorphism} is an bijective homomorphism from and to itself.
+\end{itemize}
+\end{defn}
+
+\begin{theorem}[vector space version of pigeonhole principle] Let $f:~V \to W$ is linear, and suppose $\operatorname{dim}V = \operatorname{dim}W = n < \infty.$ Then the followings hold:
+\begin{itemize}
+\item if $f$ is a monomorphism, then it is an isomorphism;
+\item if $f$ is an epimorphism, then it is an isomorphism.
+\end{itemize}
+\end{theorem}
+
+\begin{figure}
+\centering
+\includegraphics[width=3cm]{dove}
+\caption{A pigeon.}
+\end{figure}
+
+
+\begin{proof}
+Let $f$ be a monomorphism; suppose that $f$ is not surjective. Then there is a vector $w \in W$ such that $\forall v\in V,~w\ne f(v).$ Since $f(0)=0$, other vectors in $V$ are not mapped to 0 and hence $\ker f = \{0\}.$ And we get $\operatorname{dim}\operatorname{im}f = n$ from $\operatorname{dim}\ker  f = 0$. Hence $\operatorname{im}f = W.$
+
+Changing im and ker proves the rest part of the theorem.
+\end{proof}
+
+Now we can prove the question in \textbf{Section 1.2}.
+
+\begin{theorem}\label[thm]{t:matinv}
+For two square matrices $A$ and $B\in\mathfrak M_{n,n}(F)$, if $AB=I$, then $A=B^{-1}.$
+\end{theorem}
+\begin{proof}
+$AB=I$ implies that $B$ is left-invertible, which is equivalent to that $L_B$ is a monomorphism. Since $L_B:~F^n\to F^n$, $L_B$ is an isomorphism whence $B$ is invertible: $$B^{-1} = \begin{pmatrix} | & & | \\ L_B^{-1}\mathbf e_1 &\cdots & L_B^{-1}\mathbf e_n \\ | & & | \end{pmatrix}. $$ Multiplying $B^{-1}$ right in the both sides of $AB=I$, we obtain $A=B^{-1}.$ Similarly, $A$ is invertible and $A^{-1} = B.$
+\end{proof}
+
+\subsection{Rank}
+\begin{defn}
+For a matrix $A\in\mathfrak M_{m,n}(F),$ the \textbf{row space} is a space which is generated by the row vectors of $A.$ Similarly, the \textbf{column space} is a space which is generated by the column vectors of $A.$ Then the \textbf{row}(\textit{column}) \textbf{rank} is the dimension of the row(\textit{column}) space.
+\end{defn}
+\begin{ex}
+We can know the row rank and the column rank in the (R, C)-REF of the matrix; one can do elementary row operations: \begin{align*}
+A &= \begin{pmatrix}1&0&1\\5&6&7\\0&3&1\end{pmatrix}\\
+&\sim_r \begin{pmatrix}1&0&1\\0&6&2\\0&3&1\end{pmatrix}\\
+&\sim_r \begin{pmatrix}1&0&1\\0&6&2\\0&0&0\end{pmatrix}\\
+&\sim_r \begin{pmatrix}1&0&1\\0&1&\frac 1 3 \\0&0&0\end{pmatrix};
+\end{align*}
+hence the row space is $\{(a,b,a+b/3)^\mathsf T:~a,b\in R\}$ whence the row rank is 2; while the column space is $\{(a+c,b+c/3,0)^\mathsf T = (\tilde a,\tilde b,0)^\mathsf T:~\tilde a,\tilde b\in R\}$ whence the column rank is also 2. Otherwise one can do elementary column operations: \begin{align*}
+A &= \begin{pmatrix}1&0&1\\5&6&7\\0&3&1\end{pmatrix}\\
+&\sim_c \begin{pmatrix}1&0&0\\5&6&2\\0&3&1\end{pmatrix}\\
+&\sim_c \begin{pmatrix}1&0&0\\5&6&0\\0&3&0\end{pmatrix}\\
+&\sim_c \begin{pmatrix}1&0&0\\0&1&0\\-\frac 5 2&\frac1 2&0\end{pmatrix};
+\end{align*}
+which makes the same result.
+\end{ex}
+
+Are the row rank and the column rank the same? The answer is...
+
+\begin{lemma}For a matrix $A\in\mathfrak M_{m,n}(F)$ over an \emph{ordered field} $F$, $$\operatorname{col~rk}A = \operatorname{col~rk}A^\mathsf T.$$
+\end{lemma}
+\begin{proof}
+It is suffices to show that $\operatorname{col~rk}A \le \operatorname{col~rk}A^\mathsf T,$ since it implies $$\operatorname{col~rk}A^\mathsf T \le \operatorname{col~rk}(A^\mathsf T )^\mathsf T  = \operatorname{col~rk}A$$which completes the proof of lemma.
+
+We will show that $Av = 0$ if and only if $(A^\mathsf T A)v = 0$ whence $$\operatorname{col~rk}A = \operatorname{col~rk}(A^\mathsf T A) \le \operatorname{col~rk}A^\mathsf T$$; the last inequality follows because each column of $A^\mathsf T A$ is a linear combination of the columns of $A^\mathsf T$. First, $Av=0 \implies A^\mathsf T Av = 0$ trivially. Conversely, $$A^\mathsf T Av = 0 \implies v^\mathsf T A^\mathsf T A v = 0 \implies (Av)^\mathsf T Av = 0 \implies Av = 0,$$ by positive-definiteness of the dot product. (More generalized version of proof uses the orthogonal complement, or even \textbf{Erdős-Kaplansky Theorem}(?). See http://math.stackexchange.com/questions/2315/is-the-rank-of-a-matrix-the-same-of-its-transpose-if-yes-how-can-i-prove-it)\end{proof}
+\begin{theorem}[rank theorem] The row rank and the column rank are the same, and we call it the \textbf{rank} of the given matrix.
+\end{theorem}
+\begin{proof}[Proof 1]
+Count the number of \textit{leading 1} in RREF.
+\end{proof}
+\begin{proof}[Proof 2 assuming that $F$ is an ordered field]
+It is trivial that the row rank of $A$ equals the column rank of $A^\mathsf T.$ Since the column rank of $A^\mathsf T$ is the same with of $A$, the proof completed.
+\end{proof}
+\begin{theorem}[rank-nullity theorem]
+Let $A\in\mathfrak M_{m,n}(F)$ be a matrix, then $$\operatorname{rank}A + \operatorname{dim}\ker L_A = m.$$ We call $\operatorname{dim}\ker L_A$ the \textbf{nullity} of $A$, and denote $\operatorname{null}A$. Hence $$\operatorname{rank}A + \operatorname{null}A = m = \operatorname{dim}\operatorname{dom}L_A.$$
+\end{theorem}
+\begin{proof}
+We know that $A\mathbf e_i$ is $i$-th column of $A$. Hence the column space of $A$ is just the image of $L_A:~F^m \to F^n$, hence $\operatorname{col~rk} A = \operatorname{dim}\operatorname{im}L_A.$ By the dimension theorem(\cref{t:dimthm}), $$\operatorname{dim}\ker L_A  + \operatorname{col~rk} A = \operatorname{dim} F^m = m.$$\end{proof}
+
+\begin{defn}
+Given an $m$ by $n$ matrix $A$ of rank $r$, a \textbf{rank decomposition} of $A$ is a representation by a product $A=PQ$ of two matrices $P\in\mathfrak M_{m,r}(F)$ and $Q\in\mathfrak M_{r,n}(F).$
+\end{defn}
+\begin{theorem}
+A rank decomposition of a matrix exists, but not uniquely.
+\end{theorem}
+\begin{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\end{proof}
+
+
+\subsection{Matrix representation and similarity}
+\begin{defn}
+For a finite dimensional vector space $V$ and a basis $\mathfrak B = \{v_i\}_{i\in I}$ of $V$, every vector $v$ in V can be represented as a linear combination of $\mathfrak B$ \textit{uniquely}, namely $$v = \sum a_i v_i;$$ and we call the row vector $$[v]_{\mathfrak B} = \begin{pmatrix}a_1 \\ \vdots \\ a_n\end{pmatrix}$$ the \textbf{coordinate} vector.
+\end{defn}
+
+\begin{theorem}
+For a $F$-vector space homomorphism $f:~V\to W$ and the bases $\mathfrak B$ and $\mathfrak C$ of V and W, respectively, there is a unique matrix $[f]^{\mathfrak B}_{\mathfrak C} \in \mathfrak M_{\operatorname{dim}V,~\operatorname{dim}W}(F)$ such that $$[f]^{\mathfrak B}_{\mathfrak C} [v]_{\mathfrak B} = [fv]_{\mathfrak C}.$$
+\end{theorem}
+\begin{proof}
+Let $n=\operatorname{dim}V$, $m=\operatorname{dim}W$, $\mathfrak B = \{ v_i\}_{i=1}^{n}$ and $\mathfrak C = \{ w_j\}_{j=1}^{m}$, then
+\begin{align*}
+\left[f(v)\right]_\mathfrak C &= \left[f\left(\sum_i a_i v_i \right) \right]_\mathfrak C
+  \\ &= \left[\sum_i a_i f\left( v_i \right)\right]_\mathfrak C
+  \\ &= \left[\sum_i a_i \sum_j b_{ij} w_j\right]_\mathfrak C
+  \\ &= \left[\sum_j \left(\sum_i a_i b_{ij}\right) w_j\right]_\mathfrak C
+  \\ &= \begin{pmatrix}\sum_i a_i b_{i1} \\ \vdots \\ \sum_i a_i b_{im}\end{pmatrix}
+  \\ &= \begin{pmatrix}b_{11} & \cdots & b_{n1} \\ \vdots & \ddots & \vdots \\ b_{1m} & \cdots & b_{nm} \\ \end{pmatrix}\begin{pmatrix}a_1 \\ \vdots \\ a_n\end{pmatrix}
+  \\ &= [f]^{\mathfrak B}_{\mathfrak C} [v]_\mathfrak B,
+\end{align*} where $[f(v_i)]_\mathfrak C = [b_{i1} ~ \cdots ~ b_{im}]^\mathsf T$ whence $$[f]^\mathfrak B _ \mathfrak C = \bigg( [f(v_1)]_\mathfrak C ~~~ \cdots ~~~ [f(v_n)]_\mathfrak C \bigg).$$ Uniqueness follows from the uniqueness of the coordinate representation.
+\end{proof}
+\begin{prop}[composition and product] \label[prop]{p:comprod} Let $V \xrightarrow{f} W \xrightarrow{g} U$ be two homomorphisms. Then
+$$[g\circ f]^\mathfrak B _ \mathfrak D = [g]^\mathfrak C _ \mathfrak D [f]^\mathfrak B _ \mathfrak C.$$
+\end{prop}
+\begin{proof}
+Easy.
+\end{proof}
+Therefore, if the bases are fixed, there is a \textit{one-to-one correspondence} between the space of matrices and the space of linear transformations; where the operations are preserved under the correspondence, as follows: $$f+g \quad \longleftrightarrow \quad [f] + [g]$$ and $$f\circ g \quad \longleftrightarrow \quad [f][g].$$ We just say that, \begin{center}``the matrices are the same thing as the linear transformations.''\end{center}
+
+\subsection{Basis transition}
+\begin{theorem} Let $\mathfrak B$ be a basis of $F^n$ and let $A$ is an $n$ by $n$ square matrix. Then $A\mathfrak B = \{Av_i:~v_i\in\mathfrak B\}$ is a basis of $F^n$ if and only if $A$ is invertible.
+\end{theorem}
+\begin{proof}
+Denote $\mathfrak B= \{v_i:~1\le i \le n\}$ like a column vector, although $F^n$ is not a field, namely, $$\mathfrak B = \begin{pmatrix} v_1\\ v_2 \\ \vdots \\ v_n \end{pmatrix}.$$ And define $A\mathfrak B$ as componentwise product: $$A\mathfrak B = \begin{pmatrix} Av_1\\ Av_2 \\ \vdots \\A v_n \end{pmatrix}.$$
+
+($\Rightarrow$) If $Y$ is a basis, then $\exists C \in \mathfrak M_{n,n}(F),\quad C(A\mathfrak B) = \mathfrak B$ since $A\mathfrak B$ spans $F^n.$ $(CA)\mathfrak B = \mathfrak B$ implies that $(CA)v_i = v_i$ for every basis element $v_i \in \mathfrak B$ whence $CA = I$ and it implies that $A$ is invertible.
+
+($\Leftarrow$) Let $v=\sum_i a_i v_i$ and $$R = \begin{pmatrix}a_1&\cdots&a_n\end{pmatrix}$$ be the coefficient matrix. Then $$v = \sum a_i v_i = R\mathfrak B = (R A^{-1})(A\mathfrak B) = \tilde R (A\mathfrak B)$$ whence $A\mathfrak B$ is a basis of $F^n$.
+\end{proof}
+\begin{theorem} \label[thm]{t:trninv}
+If $\mathfrak B$ and $\tilde{\mathfrak B}$ are bases of V and $\mathfrak C$ and $\tilde{\mathfrak C}$ are bases of W, then for linear $f:~V\to W,$ $$[\operatorname{id}_W]_{\tilde{\mathfrak C }} ^{ \mathfrak C} [f]^{\mathfrak B}_{\mathfrak C} [\operatorname{id}_V]^{\tilde{\mathfrak B}} _{ \mathfrak B} = [f]^{\tilde{\mathfrak B}}_{\tilde{\mathfrak C}}.$$ Furthermore, $[\operatorname{id}]_\bullet^\bullet$ are all invertible.
+\end{theorem}
+\begin{proof}
+For the first assertion, just use \cref{p:comprod}. For the second one, since $$[\operatorname{id}]_{\mathfrak B}^{\tilde{\mathfrak B}}[\operatorname{id}]^{\mathfrak B}_{\tilde{\mathfrak B}} = [\operatorname{id}]_{\mathfrak B}^{\mathfrak B} = I_{\operatorname{dim}\bullet},$$they are invertible by \cref{t:matinv}.
+
+\end{proof}
+\begin{prop}
+For two bases $\mathfrak B$ and $\tilde{\mathfrak B}$ of $V$, the \textbf{transition matrix} $[\operatorname{id}_V]^\mathfrak B _{\tilde{ \mathfrak B}}$ is invertible. Conversely, for a basis $\mathfrak B$ of $V$ and an invertible square matrix $U$ whose the number of row is the dimension of the space $V$, there is a basis $\tilde{\mathfrak B}$ of $V$ such that $$U = [\operatorname{id}_V]^\mathfrak B _{\tilde{ \mathfrak B}}.$$
+\end{prop}
+\begin{proof}
+The first assertion was proved in \cref{t:trninv}. For the second, let $$U = \begin{pmatrix}a_{11}&\cdots &a_{1n} \\ \vdots &\ddots &\vdots \\a_{n1}&\cdots&a_{nn} \end{pmatrix}$$ and $\mathfrak B = \{v_i\}$. We want another basis $\tilde{\mathfrak B} = \{w_i\}$ which satisfies $$U = [\operatorname{id}_V]^\mathfrak B _{\tilde{ \mathfrak B}} = \begin{pmatrix} | & & | \\ [v_1]_{\tilde{ \mathfrak B}} & \cdots & [v_n]_{\tilde{ \mathfrak B}} \\ | && | \end{pmatrix},$$ that is, $$v_i = \sum_{j} a_{ij}w_j, \qquad \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} = \begin{pmatrix}a_{11}&\cdots &a_{1n} \\ \vdots &\ddots &\vdots \\a_{n1}&\cdots&a_{nn} \end{pmatrix}\begin{pmatrix} w_1 \\ \vdots \\ w_n \end{pmatrix} = U \begin{pmatrix} w_1 \\ \vdots \\ w_n \end{pmatrix} \qquad $$ Hence we have $$\tilde{\mathfrak B} = U^{-1}\mathfrak B.$$
+\end{proof}
+\subsection{Similarity}
+\begin{defn}[similarity]
+For two square matrices $A$ and $\tilde A$, we say those are \textbf{similar} if there is an invertible matrix $U$ such that $$\tilde A = U^{-1}AU,$$and denote $A\sim \tilde A$.
+\end{defn}
+\begin{prop}
+Similarity relation is an \textbf{equivalence relation}, that is, satisfies the following three properties: \begin{itemize}
+\item (Reflexivity) $A \sim A,$
+\item (Symmetricity) $A \sim B \Longrightarrow B \sim A,$
+\item (Transitivity) $A\sim B \sim C \implies A\sim C.$
+\end{itemize}
+\end{prop}
+
+\begin{ex}[similarity]
+For two square matrices $A$ and $\tilde A$, we say those are \textbf{similar} if there is an invertible matrix $U$ such that $$\tilde A = U^{-1}AU,$$and denote $A\sim \tilde A$.
+\end{ex}
+\begin{prop}
+[similarity]
+For a linear operator $f:~V\to V$ and the bases $\mathfrak B$, $\tilde{\mathfrak B}$ of $V$, two matrix representations of $f$ are similar, that is, $$[f]^{\mathfrak B} _{\mathfrak B} \sim [f]^{\tilde{\mathfrak B}} _{\tilde{\mathfrak B}}.$$
+\end{prop}
+\begin{proof}
+$$[\operatorname{id}_V] _{\tilde{\mathfrak B}} ^{\mathfrak B} [f]^{\mathfrak B} _{\mathfrak B} [\operatorname{id}_V] ^{\tilde{\mathfrak B}} _{\mathfrak B} = [f]^{\tilde{\mathfrak B}} _{\tilde{\mathfrak B}}.$$
+\end{proof}

@@ -1,0 +1,256 @@
+\chapter{Similarity}
+\section{Eigen-\textit{something}}
+The prefix \textit{eigen}- is adopted from the German word \textit{eigen} for ``own-" or ``unique to", ``peculiar to". We will study about some \textit{unique} something, up to similarity.
+
+\begin{defn}[eigenvalue, eigenvector, eigenspace] For a linear \textit{operator} $T \in \mathfrak L(V,V)$, if $$Tv = \lambda v$$ for a scalar $\lambda\in F$ and a \textit{nonzero} vector $v\in V$, we call $\lambda$ an \textbf{eigenvalue} and $v$ an \textbf{eigenvector} of $T$. The \textbf{eigenspace} of $\lambda$ is a subspace $$E_\lambda = \left \{v\in V: ~~ Tv= \lambda v\right\} = \ker(T-\lambda I)$$ of all vectors whose eigenvalue is $\lambda$.
+\end{defn}
+\begin{ex}
+Check whether $E_\lambda$ is a subspace of $V$.
+\end{ex}
+\begin{prop}
+If $f(t) \in F[t]$ and $v\in E_\lambda$, then $f(T)v = f(\lambda)v.$
+\end{prop}
+\begin{theorem}
+TFAE(the followings are equivalent):
+\begin{enumerate}[label={(\alph*)}]
+    \item $\lambda$ is an eigenvalue of $T$.
+    \item $T-\lambda I$ is singular, i.e., non-invertible.
+    \item $\operatorname{det} (T-\lambda I) = 0.$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We already(and MUST) know that (b) and (c) are equivalent. If $T-\lambda I$ is invertible, $$Tv = \lambda v ~~~~\Longleftrightarrow~~~~ (T-\lambda I)v = 0~~~~\Longleftrightarrow~~~~v=0$$and hence $\lambda$ is not an eigenvalue. And if $\lambda$ is an eigenvalue, $T-\lambda I$ is not bijective and hence singular.
+\end{proof}
+Thus, determinant of $\lambda I - T$ is important to decide whether or not $\lambda$ is an eigenvalue of $T$. Hence we define a \textit{polynomial}:
+\begin{defn}[characteristic polynomial] The \textbf{characteristic polynomial} $\phi_T(t)$ is a polynomial defined by $$\phi_T(t) = \operatorname{det} (tI-T).$$ We will write $\chi\phi$ instead of the term `characteristic polynomial' since it is so long. \textsf{XD}
+
+Here, $t$ behaves like a \textit{scalar} since it used instead of a scalar $\lambda$.
+\end{defn}
+Note that $\lambda$ is an eigenvalue iff $\phi_T (\lambda) = 0.$
+\begin{ex}
+Check if $\chi\phi$ is really a polynomial.
+\end{ex}
+\begin{ex}
+Calculate the $\chi\phi$ of a matrix $$A = \begin{pmatrix}3&3&-1\\2&2&-1\\2&2&0\end{pmatrix}.$$ Find its eigenvalues and eigenspaces, and calculate $\phi_A (A)$. Note that $$f(T) = \sum a_n T^n$$ for a polynomial $f(t) = \sum a_n t^n \in F[t]$ and a linear operator $T$. \label[ex]{ec}
+\end{ex}
+
+\section{Diagonalizability}
+
+Why we consider it? A big \textit{raison d'etre} of eigen-something is \textit{diagonalization} of a linear operator. First, from its name, we can define as follows:
+
+\begin{defn}[diagonalization]
+A \textbf{diagonalization} of a linear operator $T\in \mathfrak L(V,V)$ is a representation $T$ as a similar operator of a diagonal operator $D = \operatorname{diag}(d_1,\cdots,d_n).$ If there is a diagonalization of $T$, that is $T\sim D$ for a diagonal operator $D$, then we call $T$ is \textbf{diagonalizable}.
+\end{defn}
+\begin{ex}
+Determine whether the following matrices are diagonalizable, where $F=\mathbb Q$:
+$$A=\begin{pmatrix} -1 & 3 & -1 \\ -3 & 5 & -1 \\ -3 & 3 & 1 \end{pmatrix},\qquad B= \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}. $$ If a matrix is not diagonalizable in given field, consider $F=\mathbb R$ and $F=\mathbb C$.
+\end{ex}
+
+If $T$ is diagonalizable, then $[T]_{\mathfrak B}^{\mathfrak B} = U^{-1}DU$ for a diagonal matrix $D$, supposing the basis $\mathfrak B$ is given for the vector space $V$; and there is another basis $\mathfrak C$ for $V$ such that $U = [\operatorname{id}_V]_{\mathfrak B}^{\mathfrak C}$. Evaluating this, we obtain $D=[T]_{\mathfrak C}^{\mathfrak C}.$ Since it is diagonal, we have $$[D]^{i} = D\mathbf e_i  = [T]_{\mathfrak C}^{\mathfrak C} [w_i]_{\mathfrak C}=[T w_i]_{\mathfrak C}$$ and $$D\mathbf e_i = d_i\mathbf e_i =[d_i w_i]_{\mathfrak C},$$ where $D=\operatorname{diag}(d_1,\cdots,d_n)$ and $\mathfrak C = \{w_1, \cdots, w_n\}.$ Hence we have $Tw_i = d_i w_i$, i.e., new basis must consist of eigenvectors, and the diagonal matrix contains corresponding eigenvalues. It is equivalent to the original definition. Hence we can re-define diagonalizability of a linear operator without matrices:
+\begin{defn}[redefine of diagonalizability] A linear operator $T\in\mathfrak L(V,V)$ is diagonalizable if there is a basis for $V$ whose elements are all eigenvectors of $V$.
+\end{defn}
+Since eigenvectors span $V$, there are $n$ linearly independent eigenvectors.
+\begin{prop}
+If the eigenvalues of $T$ are mutually different, $T$ is diagonalizable.
+\end{prop}
+\begin{proof}
+If $\lambda$'s are different, eigenvectors are linearly independent.
+\end{proof}
+\begin{prop}
+If $H$ is Hermitian, that is $H=H^\dagger$, then $H$ can be diagonalized by a unitary operator $U$, i.e., $U^{-1} = U^\dagger.$
+\end{prop}
+\begin{proof}
+Exercise.
+\end{proof}
+\begin{theorem}
+Let $T\in \mathfrak L(V,V)$ and $\lambda_i$'s are eigenvalues of $T$. Then TFAE:
+\begin{enumerate}[label={(\alph*)}]
+    \item $T$ is diagonalizable,
+    \item $\phi_T(t) = \prod (x-\lambda_i)^{e_i}$, $e_i = \dim E_{\lambda_i},$
+    \item $V = \bigoplus E_{\lambda_i},$
+    \item $\dim V = \sum \dim E_{\lambda_i}.$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{description}
+\item [(a)$\Rightarrow$(b)] $\chi\phi$ is invariant under similarity, since $$tI - T = U^{-1}(tI - D)U,$$for example. Hence $$\phi_T(t) = \phi_D(t) = \prod (t-\lambda_i)^{e_i}.$$ A term due to a basis element appears once in the characteristic polynomial, hence the exponent of $t-\lambda_i$ is the (maximum) number of independent vectors in $E_{\lambda_i}$, i.e., dimension.
+\item [(b)$\Rightarrow$(c)$\Rightarrow$(d)$\Rightarrow$(a)] ㅎㅎ. For (b) to (c), use dimension argument. Note that $\sum e_k = n$.
+\end{description}
+\end{proof}
+
+\section{Cayley-Hamilton Theorem and Minimal Polynomial}
+
+From \cref{ec}, we can know $\phi_A (A)$ for some matrices. Is it a general result? The answer is \textsf{YES}, and it is called \textit{Cayley-Hamilton theorem}!
+\begin{theorem}[Cayley-Hamilton] $$\phi_T(T)=0.$$\end{theorem}
+For $n=2$, let $A = \begin{pmatrix}a&b\\c&d\end{pmatrix}.$ Then $$\phi_A(t) = (t-a)(t-d)-bc = t^2 - (a+d)t + (ad-bc)$$ and we get a \textit{familiar}(?) form: $$T^2 - (a+d)T + (ad-bc)=0.$$
+\begin{proof}[Proof(?)] Evaluating $t=T$, $$\phi_T(T) = \det(TI-T) = \det(T-T) = 0.$$
+
+(\textbf{NOT A PROOF.}) \renewcommand{\qedsymbol}{$\lightning$}
+\end{proof}
+First, $t$ behaves as a scalar. And also $0$ is a zero matrix, rather than a scalar 0, in a formula $\phi_T(T)=0.$
+
+Then how to prove it? We will consider $t^n \phi_T(t^{-1})$.
+
+\begin{proof} Let $\phi_T(t) = \sum_{i=0}^n c_i t^i,$ then
+  $$t^n \phi_T(t^{-1}) = \sum_{i=0}^n c_i t^{n-i}
+  = t^n \operatorname{det}\left( t^{-1}I-T \right)
+  = \operatorname{det}(I-tT).$$
+From $$\operatorname{det}(A)I = A \cdot \operatorname{adj}A,$$
+we get $$\operatorname{det}(I-tT)I = (I-tT)\operatorname{adj}(I-tT).$$
+In order to `remove' $I-tT$ in the RHS, multiplying $\sum_{i=0}^m(tT)^i $ left,
+$$\begin{aligned}\left(\sum_{i=0}^m (tT)^i \right) \left(\sum_{i=0}^n c_i t^{n-i}\right) &=
+\left(\sum_{i=0}^m (tT)^i \right) \operatorname{det}(I-tT)I \\ &=
+ \left(\sum_{i=0}^m (tT)^i \right) (I-tT)\operatorname{adj}(I-tT) \\ &
+ = \left(I-(tT)^{m+1} \right) \operatorname{adj}(I-tT).\end{aligned}$$
+By definition of classical adjoint, every entry of this matrix is a polynomial
+of degree less than $n$. Hence RHS have terms of degree less than $n$ or greater
+than or equal to $m$; for big $m$, the terms of degree $d\in [n,m)$ in LHS must
+be vanished. Hence, with $m$ big enough, we obtain that the coefficient of the term of degree $n$ is zero. Now, observing the coefficient
+of the term of degree $n$, we get
+$$\sum_{i=0}^n c_i T^i = 0.$$
+Hence $\phi_T(T) = 0.$
+\end{proof}
+
+\begin{defn}[annihilating ideal]
+$$\mathcal I_T = \{p(t) \in F[t]:~~p(T) = 0\}.$$
+A polynomial in $\mathcal I_T$ is called an \textbf{annihilating polynomial}.
+\end{defn}
+Since $\phi_T(t) \in \mathcal I_T$, by Cayley-Hamilton theorem, $\mathcal I_T \ne \emptyset.$
+\begin{theorem}[minimal polynomial]
+There is a monic annihilating polynomial which has the smallest degree. `Monic' means that the coefficient of the highest order term is 1. We call this polynomial the \textbf{minimal polynomial} $m_T(t).$ And also, $$m_T(t) | p(t), \qquad p(t) \in \mathcal I_T;$$especially, $m_T(t) | \phi_T(t).$
+\end{theorem}
+\begin{proof}
+  Since $\operatorname{deg}\mathcal I_T$ is a subset of $\mathbb N$, there is the minimal degree $d$. If there is two different monic annihilating polynomial of degree $d$, denoting $m_1$ and $m_2$, we have $m_1 - m_2 \in \mathcal I_T$ which leads to a contradiction.
+  
+  If $m_T(t) \not\!|\; p(t)$ for every $p(t)\in\mathcal I_T,$ by division algorithm, we get that the remainder $r(t) = p(t)~\textrm{mod}~m_T(t)$ is also an annihilating polynomial which has the degree less than of $m_T(t),$ a contradiction.
+\end{proof}
+\begin{prop}
+$\mathcal I_T$ is really an ideal. (Of a ring $F[t].$)
+\end{prop}
+\begin{proof}
+  Exercise.
+\end{proof}
+\begin{ex}
+Find the $\chi \phi$ and $m\phi$ of a matrix $$A=\begin{pmatrix}5&-6&-6\\-1&4&2\\3&-6&-4\end{pmatrix}.$$
+\end{ex}
+\begin{proof}[Answer]
+$$\phi_A(t) = (t-1)(t-2)^2 ,\qquad m_A(t) = (t-1)(t-2).$$
+\end{proof}
+\section{Invariant and Triangularizability}
+\begin{defn}[invariant subspace]
+  For $T\in\mathfrak L(V,V)$ and $W\le V$, $W$ is called invariant under $T$ if $TW \le W.$
+\end{defn}
+\begin{ex}
+  \begin{itemize}
+    \item $F[t]$ is invariant under $D = \frac{\mathrm d}{\mathrm dt}.$
+    \item Every space is invariant under a projection.
+    \item Suppose there are two linear operator $T$ and $S$ on $V$, which commute, i.e., $TS = ST$. Let $W = \operatorname{im} S$ and $N = \ker S$, then $W$ and $N$ are invariant under $T$, since $TW = TSV = STV \le SV = W$ and $Sn = 0 \implies STn = TSn = 0.$
+  \end{itemize}
+\end{ex}
+Let $W\le V$ be invariant under $T$, and $\mathfrak C = \{w_i\}_{i=1}^m$ be a basis of $W$. Then, $$[T]_{\mathfrak C}^{\mathfrak C} = \begin{pmatrix}[T\upharpoonright _W]^{\mathfrak C}_{\mathfrak C} & * \\ \mathbf 0 & *\end{pmatrix},$$ since, letting $\mathfrak B = \{w_i, v_j\}_{i=1,j=1}^{m,~n-m}\supseteq \mathfrak C$ be a basis of $V$, $$Tw_i = \sum a_iw_i + \sum 0 v_j.$$
+
+\begin{theorem}
+  Let $W\le V$ be invariant under $T$, then $$\phi_{T\upharpoonright _W} | \phi_T\qquad \textrm{and}\qquad m_{T\upharpoonright W} | m_T.$$
+\end{theorem}
+\begin{proof}
+Let $W$ has a basis $\mathfrak C$ and $\mathfrak B$ is a basis of $V$ which is extended from $\mathfrak C$. Then we have $$[T]^{\mathfrak B}_{\mathfrak B} = \begin{pmatrix}[T\upharpoonright _W]^{\mathfrak C}_{\mathfrak C}& * \\ \mathbf 0 & *\end{pmatrix}.$$ For $\chi\phi$, $$0 = \phi_T \left([T]^{\mathfrak B}_{\mathfrak B}\right) = \begin{pmatrix}\phi_T \left([T\upharpoonright _W]^{\mathfrak C}_{\mathfrak C}\right)& * \\ \mathbf 0 & *\end{pmatrix}.$$ And by above, we have $$\phi_T \left([T]^{\mathfrak B}_{\mathfrak B}\right)  = 0 \implies \phi_T \left([T\upharpoonright _W]^{\mathfrak C}_{\mathfrak C}\right)  = 0,$$ which completes the remained part of proof.
+\end{proof}
+
+\begin{ex}
+  Consider a diagonalizable transformation $T$, and let $W_i$'s be its eigenspaces, then it suits perfectly to above theorem, and it makes the `sufficient-necessary condition' of diagonalizability clear. But if $T$ is not diagonalizable, it cannot be adopted since we do not know the other components of given block matrix.
+\end{ex}
+
+% conductor
+We define the following as a generalization of `annihilator ideal':
+\begin{defn}[conductor (ideal)] Let W be an \textit{invariant} subspace for $T$ and let $v$ be a vector in $V$. The \textbf{T-conductor of v into W} is the set $S_T(v; ~W)$ which consists of all polynomials $g\in F[t]$ such that $g(T) v \in W.$
+
+If $W=0$, we denote it as $\mathcal I_T(v) = S_T(v;~0)$ and call the \textbf{T-annihilator of v}. And $\mathcal I_T = \bigcap_v \mathcal I_T(v)$ is the $T$-annihilator of $V$, which annihilates all the vectors of $V$.
+\end{defn}
+\begin{prop}Conductor is an ideal in $F[t]$.\end{prop}
+\begin{defn}[conductor (vector)] The monic generator of the ideal $S(v;~W)$ is also called the \textbf{conductor} of $v$ into $W$.
+\end{defn}
+
+Analogous proofs of one for uniqueness of minimal polynomial prove also for the conductors, trivially. And, since $\mathcal I_T$ is the \textit{strongest} polynomials, the $T$-conductors divide the minimal polynomial for $T$.
+
+\section{Minimal Polynomials and Triangular-/Diagonal-izability}
+\begin{lemma}
+Suppose $$m_T(t) = \prod (t-c_i)^{r_i},\qquad c_i \in F,$$ and let $W\lneq V$ be invariant under $T$. Then there exists a vector $v\not\in W$ such that $$\exists \lambda \text{: eigenvalue of }T:~~~~(T-\lambda I)v \in W,$$ that is, a linear polynomial is a $T$-conductor for some $v$. 
+\label[lemma]{lc}
+\end{lemma}
+\begin{proof}Let $w\in V\setminus W,$ and $g$ be the $T$-conductor of $w$ into $W$. ($g(T)w = 0.$) Then $g | m_T$, and since $w \not\in W$, $g $ cannot be a constant. ($g(T)w = kw \in W \implies k = 0 = g$ which is contradict to the fact that $g$ is a generator of an nontrivial ideal.) Therefore $$g(t) = \prod(t-c_i)^{e_i}; \qquad \sum e_i > 0.$$ Choose $j$ so that $e_j > 0$, then $g = (t-c_j) h$ for some $h$. Since $v=h(T)w \not \in W$ ($g$ is minimal in the sense of degree) and $g(T)w = (T-cI)v \in W$, we just found $v$! Obviously, $c$ is an eigenvalue.
+\end{proof}
+
+We conclude(?) with the following necessary-sufficient condition of diagonalizability and trigonalizability(trivial meaning), in the sense of minimal polynomial:
+\begin{theorem}$T$ is triangularizable iff $m_T = \prod (t-\lambda_i)^{e_i},$ where $\lambda_i$'s are distinct.
+\label[thm]{tt}
+\end{theorem}
+\begin{proof}
+($\Longleftarrow$) Let $W=0$, then above lemma says $\exists v \exists \lambda (T - \lambda I) v = 0.$ Hence it forms an eigenspace, and there is a basis $\mathfrak B$ of $V$ extending $\{v\}$; therefore we have $$[T]_\mathfrak B ^ \mathfrak B = \begin{pmatrix} \lambda & ** \\ \mathbf 0 & * \end{pmatrix}.$$ By an induction on the dimension of square matrix ($*$ for above), we obtain a triangularization of $T$: $$[T]_\mathfrak B ^ \mathfrak B = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+      0     & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+      0     &       0     & \cdots & a_{nn} \\
+\end{pmatrix}.$$ 
+($\Longrightarrow$) Calculate it$\sim$.
+\end{proof}
+\begin{coro}Every linear operator is triangularizable if the given field is algebraically closed.\end{coro}
+\begin{proof}[Another proof of Corollary: using induction]
+There is an eigenvalue and an eigenvector since the field is algebraically closed. Hence let $\lambda$ and $v$ the chosen ones, extend $v$ to a basis $\mathfrak B$ of $V$, and denote $\mathfrak C = \mathfrak B - \{v\}$ and $W = \langle \mathfrak C \rangle$. Then:
+$$[T]_\mathfrak B ^ \mathfrak B = \begin{pmatrix}
+\lambda & ** \\
+\mathbf 0 & * \\
+\end{pmatrix}.$$ And we know that $$* = [\pi \circ T]_{\mathfrak C}^{\mathfrak C}$$ where $\pi$ `removes' $v$-component: $$\pi:~V\to W;\qquad av + \sum_{w_i\in \mathfrak C} b_i w_i \mapsto  \sum_{w_i\in \mathfrak C} b_i w_i.$$
+\begin{center}
+\leavevmode
+\xy
+\xymatrix {
+W\ar[r]^{T} \ar[dr]_{\pi\circ T}& TW \ar[d]^{\pi}\\ & W
+}
+\endxy
+\end{center} 
+Since $\pi\circ T$ is linear, an induction completes the proof.
+\end{proof}
+
+\begin{theorem}$T$ is diagonalizable iff $m_T = \prod (t-\lambda_i),$ where $\lambda_i$'s are distinct.\end{theorem}
+\begin{proof}
+($\Longrightarrow$) Trivial. Think as a linear transformation each of $T-\lambda_i I$'s.
+
+($\Longleftarrow$) Let $W=\bigoplus E_{\lambda_i}$ be the space spanned by all of the characteristic vectors of $T$, and suppose $W \ne V$. By \cref{lc}, there is a vector $v\not \in W$ and an eigenvalue $\lambda_j$ such that $w = (T-\lambda_j I)v \in W$. Since $w\in W$, it is represented by a linear combination of eigenvectors uniquely: $$w = \sum_{w_i \in  E_{\lambda_i}} w_i,$$noting that $T w = \sum \lambda_i w_i.$ 
+
+Let $m_T = (t-\lambda c_j) g$ for some polynomial $g$, and $$g(t) - g(c_j) = (t - c_j)h(t)$$ for some polynomial $h$. Then we have $$g(T)v - g(c_j)v = h(T)(T-c_j I)v = h(T)w \in W$$ and $g(T)v \in W$ whence $g(c_j)v \in W.$ Since $v\not\in W$, $g(c_j) = 0.$ It contradicts the assumption that $m_T$ has distinct roots.
+\end{proof}
+
+\section{Simultaneous Triangular-/Diagonal-ization}
+We want to find a basis which triangularizes all of the transformations in a family $\mathscr F$ \textit{simultaneously}.
+
+The subspace $W$ is \textbf{invariant under} $ {\mathscr F}$ if $W$ is invariant under each operators.
+
+Since all diagonal matrices commute, if $T$ and $S$ diagonalized simultaneously, then$$(U^{-1}TU)(U^{-1}SU) = (U^{-1}SU)(U^{-1}TU)$$ and hence $TS = ST.$ Therefore we consider only a family whose elements commute mutually, for simultaneous diagonalization.
+
+For simultaneous triangularization, one does not have to satisfy the commutating condition; however it is a \textit{sufficient} condition for simultaneous triangularization, as we will see.
+
+\begin{lemma}Let $\mathscr F$ be a commuting family of triangularizable linear operators on $V$. Let $W$ be a proper subspace of $V$ which is invariant under $\mathscr F$, then there is a vector $v\in V\setminus W$ such that $$\forall T\in\mathscr F, ~~~ Tv \in \langle v \rangle \oplus W.$$ 
+\end{lemma}
+\begin{proof}It is too taxing to deal with infinitely many operators; hence we use a basis: let $\{T_1, \cdots, T_r\}$ be `a'(need not to be unique) maximal linearly independent subset of $\mathscr F$; i.e. a basis for $\langle \mathscr F \rangle \le \mathfrak L(V,V).$ ($\mathfrak L(V,V)$ is a f.d.v.s.) Then it is sufficient to check for these basis elements only.
+
+By \cref{lc}, for a single operator, we can find a vector $v_1\in V \setminus W$ and a scalar $\lambda_1$ such that $(T_1 - \lambda_1 I)v_1 \in W.$ Since $W$ is invariant under $T_1$, $$V_1 = \left\{v\in V:~~(T_1 - \lambda_1 I)v \in W \right\} \gneq W.$$ And $V_1$ is invariant under $\mathscr F$.
+
+Now, in order to use induction, consider $V_1$ instead of $V$. Let $W$ be a proper subspace of $V_1$, and $U_2 = T_2 \upharpoonright _W$ instead of $T_1$ of above procedure. Since $m_{U_2} | m_{T_2}$, we may apply \cref{lc} to new $W$ and $U_2$ and consider as of $T_2$. We obtain a vector $v_2 \in V_1 \setminus W$ and a scalar $\lambda_2$ such that $(T_2 - \lambda_2 I)v_2 \in W.$ Note that, since $v_2 \in V_1,$ both of $(T_1 - \lambda_1 I)v_2$ and $(T_2 - \lambda_1 I)v_2$ belong to $W$. And let $$V_2 =\left\{v\in V_1:~~(T_2 - \lambda_2 I)v \in W\right\},$$ then $V_2$ is invariant under $\mathscr F$.
+
+Continue this process by an induction, then we can find $v = v_r$ as the desired vector.
+\end{proof}
+\begin{theorem}Let $\mathscr F$ be a commuting family of triangularizable linear operators on $V$. Then it can be triangularized simultaneously.
+\end{theorem}
+\begin{proof}
+Induction. Now it is easy. (Same with the proof of \cref{tt}.)
+\end{proof}
+
+Now, finish with diagonalization.
+
+\begin{theorem}Let $\mathscr F$ be a commuting family of diagonalizable linear operators on $V$. Then it can be diagonalized simultaneously.
+\end{theorem}
+\begin{proof}
+Almost same process, at this point, however, it is easier to proceed by induction on dim$V$.
+
+If $\operatorname{dim}V = 1$, automatically proved. Let $\operatorname{dim}V = n$ and choose any $cI \ne T\in\mathscr F$. Let $\lambda_i$'s be the distinct eigenvalues of $T$ and let $W_i = E_{\lambda_i} = \ker (T-c_i I).$ $W_i$ is invariant under every operator which commutes with $T$; and each operator in $$\mathscr F_i = \left\{T\upharpoonright_{W_i} : ~~~ T\in\mathscr F \right\}$$ is diagonalizable since its minimal polynomial divides the minimal polynomial for the corresponding operator in $\mathscr F$. Operators in $\mathscr F_i$ can be diagonalized simultaneously since $\operatorname{dim}W_i < \operatorname{dim}V$ by a basis $\mathfrak B_i$. Then $\mathfrak B = (\mathfrak B_i)$ is a desired basis.
+\end{proof}
