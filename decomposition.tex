@@ -1,1 +1,76 @@
 \chapter{Decomposition}
+\section{Direct Decomposition}
+First, see some examples of \textit{direct decomposition} of a vector space.
+\begin{remind}[direct sum] Call $W_i$'s are \textbf{independent} and denote $$\bigoplus W_i = \sum W_i$$ if for every vector in $\sum W_i$ the coordinate representation of it is unique.
+\end{remind}
+
+It is obvious that $W_i$'s are \textbf{independent} iff $\mathfrak B = (\mathfrak B_i)$ is an ordered basis for $\sum W_i$ where each $\mathfrak B_i$ is one for $W_i$.
+
+\begin{remind}[projection, or idempotent] One such that $E^2 = E$.
+\end{remind}
+We have $V = \ker E \oplus \operatorname{im} E.$ And $E$ is trivially diagonalizable with $$[E]_\mathfrak B = \begin{pmatrix}I & \mathbf 0 \\  \mathbf 0 &  \mathbf 0 \end{pmatrix}$$ where $\mathfrak B = (\text{basis for }\operatorname{im} E,~\text{basis for }\operatorname{ker} E).$
+
+\begin{theorem}If $V = \bigoplus W_i$, then there exist projections $E_i$ such that:
+\begin{itemize}
+\item $E_i E_j = 0$ if $i\ne j$,
+\item $I = \sum E_i$,
+\item $\operatorname{im} E_i = W_i.$
+\end{itemize}
+Conversely, if there are projections $E_i$ which satisfy above two from the top and let $\operatorname{im} E_i =: W_i$, then $V = \bigoplus W_i.$
+\end{theorem}
+\begin{proof}($\Longrightarrow$) Take $$E_j:~\bigoplus W_i\xrightarrow[projection]{canonical} W_j.$$
+
+($\Longleftarrow$) Obvious. (Find the unique coordinate representation of a vector.)
+\end{proof}
+
+Suppose each of $W_i$ is invariant under $T$, then $T_i = T\upharpoonright _{W_i}$ is a linear operator on $W_i$, and $$Tv = \sum T_i v_i$$ if $v = \sum v_i$ is the unique coordinate representation with $v_i \in W_i.$ We says that $T$ is the direct sum of $T_i$'s. If the basis is given by $\mathfrak B = (\mathfrak B_i)$ where each $\mathfrak B_i$ is one for $W_i$, then $[T]_{\mathfrak B}^{\mathfrak B} $ is a form of block diagonal matrix: $$[T]_{\mathfrak B}^{\mathfrak B} = \begin{pmatrix}
+[T_1]_{\mathfrak B_1}^{\mathfrak B_1} & \mathbf 0 & \cdots & \mathbf 0 \\
+\mathbf 0 & [T_2]_{\mathfrak B_2}^{\mathfrak B_2} & \cdots & \mathbf 0 \\
+\vdots  & \vdots & \ddots & \vdots  \\
+\mathbf 0  & \mathbf 0  & \cdots& [T_k]_{\mathfrak B_k}^{\mathfrak B_k} \\
+\end{pmatrix}. $$ Hence for matrices, $A$ is the direct sum of $A_i$'s if $A = \operatorname{diag}(A_1,\cdots,A_k)$ where diag denotes the block diagonal.
+
+
+\begin{theorem}Let $V=\bigoplus W_i$ and $E_i$'s be canonical projections. Then $W_i$'s are all invariant under $T$ iff $T$ commutes with each of $E_i$'s.
+\end{theorem}
+\begin{proof}($\Longrightarrow$) Let $v=\sum v_i$, then $$ E_j Tv = E_j \sum T_i v_i = E_j T_jv_j = T_j v_j =  T v_j = T E_j v.$$
+
+($\Longleftarrow$) $$TW_i = TE_iV = E_i TV \le E_i V = W_i.$$
+\end{proof}
+
+Similar procedure can be adopted to the eigenspace decomposition $V = \bigoplus E_{\lambda_i}$:
+
+\begin{theorem}Let $T$ be a diagonalizable operator(hence there is the eigenspace decomposition of $V$ w.r.t. $T$), then there exist projections $D_i$ such that:
+\begin{itemize}
+\item $T = \sum \lambda_i D_i$,
+\item $I = \sum D_i$,
+\item $D_i D_j = 0$ if $i\ne j$,
+\item $\operatorname{im} D_i = E_{\lambda_i}.$
+\end{itemize}
+Conversely, if there are distinct scalars $\lambda_i$ and nonzero operators $D_i$ which satisfy above three from the top, then $T$ is diagonalizable, $\lambda_i$'s are eigenvalues, and $D_i$'s are projections satisfy $\operatorname{im} D_i = E_{\lambda_i}.$
+\end{theorem}
+\begin{proof}TOTALLY SAME PROCEDURE. Omit.\end{proof}
+
+Hence, if $T = \sum \lambda_i D_i$, then for any polynomial $g$, $$g(T) = \sum g(\lambda_i)D_i.$$ And we obtain $$T^r = \left( \sum \lambda_i D_i\right)^r =  \sum \lambda_i^r D_i ,$$ since all of heterogeneous terms disappear. From this formulation, we have $$g(T) = 0 \Longleftrightarrow \forall i ~ g(\lambda_i) = 0,$$ which means $m_T(t) = \prod (t -\lambda_i).$
+
+Note that, if $p_j(t) = \prod_{i\ne j} \frac{t-\lambda_i}{\lambda_j - \lambda_i}$, we have $p_j(\lambda_i) = \delta_{ij}$ whence $$p_j(T) =p_j \left(\sum \lambda_i D_i \right) = \sum \delta_{ij} D_i= D_j.$$ (Hence $D_j$'s not only commute with $T$ but every polynomials in $T$.) 
+
+In fact, we have $$g(t) = \sum g(\lambda_i)p_j(t).$$ Plugging $g=1$ and $g=t$,
+$$1 = \sum p_i,\qquad t = \sum \lambda_i p_i.$$(Except $k=1$. In this case $T$ is trivially diagonalizable.) Evaluating $T$ and using above formulae, $$I = \sum D_i,\qquad T = \sum \lambda_i D_i.$$ Observe that if $i\ne j$, then $p|p_i p_j$ whence $D_iD_j = 0.$ And $p_i(T)\ne 0$ since $\operatorname{deg} p_i < \operatorname{deg}p.$ Applying to above theorem, we just proved the sufficient-necessary condition of diagonalizability with another method.
+
+\section{Primary Decomposition}
+It is a generalization of what we did above.
+\begin{theorem}Let $T$ be a linear operator on $V$, and factorize $$m_T(t) = \prod_{i=1}^k p_i(t)^{r_i},$$where $p_i$'s are distince irreducible monic polynomials. Let $W_i = \ker p_i(T)^{r_i}$, then:
+\begin{itemize}
+\item $V = \bigoplus W_i$,
+\item $TW_i \le W_i$,
+\item letting $T_i = T\upharpoonright _{W_i}$, $m_{T_i}(t) = p_{i}(t)^{r_i}.$
+\end{itemize}
+\end{theorem}
+
+
+
+
+
+
+

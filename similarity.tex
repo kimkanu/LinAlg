@@ -215,7 +215,7 @@ Since $\pi\circ T$ is linear, an induction completes the proof.
 \begin{proof}
 ($\Longrightarrow$) Trivial. Think as a linear transformation each of $T-\lambda_i I$'s.
 
-($\Longleftarrow$) Let $W=\bigoplus E_{\lambda_i}$ be the space spanned by all of the characteristic vectors of $T$, and suppose $W \ne V$. By \cref{lc}, there is a vector $v\not \in W$ and an eigenvalue $\lambda_j$ such that $w = (T-\lambda_j I)v \in W$. Since $w\in W$, it is represented by a linear combination of eigenvectors uniquely: $$w = \sum_{w_i \in  E_{\lambda_i}} w_i,$$noting that $T w = \sum \lambda_i w_i.$ 
+($\Longleftarrow$) Let $W=\bigoplus E_{\lambda_i}$ be the space spanned by all of the eigenvectors of $T$, and suppose $W \ne V$. By \cref{lc}, there is a vector $v\not \in W$ and an eigenvalue $\lambda_j$ such that $w = (T-\lambda_j I)v \in W$. Since $w\in W$, it is represented by a linear combination of eigenvectors uniquely: $$w = \sum_{w_i \in  E_{\lambda_i}} w_i,$$noting that $T w = \sum \lambda_i w_i.$ 
 
 Let $m_T = (t-\lambda c_j) g$ for some polynomial $g$, and $$g(t) - g(c_j) = (t - c_j)h(t)$$ for some polynomial $h$. Then we have $$g(T)v - g(c_j)v = h(T)(T-c_j I)v = h(T)w \in W$$ and $g(T)v \in W$ whence $g(c_j)v \in W.$ Since $v\not\in W$, $g(c_j) = 0.$ It contradicts the assumption that $m_T$ has distinct roots.
 \end{proof}
@@ -250,7 +250,7 @@ Now, finish with diagonalization.
 \begin{theorem}Let $\mathscr F$ be a commuting family of diagonalizable linear operators on $V$. Then it can be diagonalized simultaneously.
 \end{theorem}
 \begin{proof}
-Almost same process, at this point, however, it is easier to proceed by induction on dim$V$.
+Almost same process as for triangularization, at this point, however, it is easier to proceed by induction on dim$V$.
 
 If $\operatorname{dim}V = 1$, automatically proved. Let $\operatorname{dim}V = n$ and choose any $cI \ne T\in\mathscr F$. Let $\lambda_i$'s be the distinct eigenvalues of $T$ and let $W_i = E_{\lambda_i} = \ker (T-c_i I).$ $W_i$ is invariant under every operator which commutes with $T$; and each operator in $$\mathscr F_i = \left\{T\upharpoonright_{W_i} : ~~~ T\in\mathscr F \right\}$$ is diagonalizable since its minimal polynomial divides the minimal polynomial for the corresponding operator in $\mathscr F$. Operators in $\mathscr F_i$ can be diagonalized simultaneously since $\operatorname{dim}W_i < \operatorname{dim}V$ by a basis $\mathfrak B_i$. Then $\mathfrak B = (\mathfrak B_i)$ is a desired basis.
 \end{proof}
